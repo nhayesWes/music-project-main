@@ -82,6 +82,24 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
+
+  displaySongPlate = () => {
+    return(
+      <div className="plateContainer">
+          <div className="songInfo">
+            <h2>SELECTED SONG</h2>
+            Song Title - {this.state.activeSong.songTitle} <br></br>
+            Song's Artist - {this.state.activeSong.artist} <br></br>
+            Avg. Rating - {this.state.activeSong.avgRating}
+              <div className = "songButtons">
+                <button onClick={() => alert('Test Delete')}>Delete Rating</button>
+              </div>
+          </div>
+      </div>
+    )
+  }
+
+
   renderSongList = () => {
     var songList = this.state.songList;
     return songList.map(song => (
@@ -100,9 +118,10 @@ class App extends React.Component {
         <ul className="song-list">
           {this.renderSongList()}
         </ul>
-        {hasActiveSong ? (<div className="activeSongDiv">
+        {hasActiveSong ? this.displaySongPlate() : null}
+        {/* {hasActiveSong ? (<div className="activeSongDiv">
           Song is {this.state.activeSong.songTitle} by {this.state.activeSong.artist} with an average rating of {this.state.activeSong.avgRating}
-        </div>) : null}
+        </div>) : null} */}
       </div>
     )
   }
